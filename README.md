@@ -1,18 +1,15 @@
 # Optimization Algorithm
 
-This repository is open source definition for optimization problem used in
+This repository is open source definition for optimization problems used in
 NPCloud optimization network.
 
-Currently we have support two simple demo problems: DemoContract and TSPContract.
+Currently we support two simple example problems: DemoContract and TSPContract.
 And we are developing the VRP contract and bin packing contract which are more
 practically used.
 
-If you are interested in contribution more contract to this repository, please contract
-us through email **npc@npcloud.io** first. And you can submit pull request after you finished
+If you are interested in contribution more algorithms to this repository, please contract
+us first through email **npc@npcloud.io** first. And you can submit pull request after you finished
 your code.
-
-NPCloud will record your contribution and will distribute certain amount of NPC token to
-contributors.
 
 ## Contract Interface
 
