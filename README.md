@@ -40,14 +40,20 @@ public interface IContract<Setting, Solution> {
 ```
 
 [1] getName: return the name of the algorithm, for example, "VRPContract" for VRP algorithm
+
 [2] getContractClass: return the class path for the implementation
+
 [3] getSettingClass: return the class path for algorithm input
+
 [4] getSolutionClass: return the class path for algorithm output
-[3] getObjectives: return a summary view of algorithm output, for example the key performance
+
+[5] getObjectives: return a summary view of algorithm output, for example the key performance
 metrics of the result
-[3] checkSetting: method to verify the algorithm input, and return a list of errors. It will return
+
+[6] checkSetting: method to verify the algorithm input, and return a list of errors. It will return
 an empty list or null value if no input error is found.
-[3] getSolutionClass: check the solution and return a list of errors. It will return
+
+[7] getSolutionClass: check the solution and return a list of errors. It will return
 an empty list or null value if not solution error if found.
 
 
