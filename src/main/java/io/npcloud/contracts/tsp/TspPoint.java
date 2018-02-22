@@ -33,6 +33,9 @@ public class TspPoint {
         this.y = y;
     }
 
+    public TspPoint() {
+    }
+
     public TspPoint(String id, Double x, Double y) {
         this.id = id;
         this.x = x;

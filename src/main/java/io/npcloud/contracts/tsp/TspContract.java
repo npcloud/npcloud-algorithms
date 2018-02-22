@@ -36,7 +36,7 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
     public List<String> checkSetting(TspSetting tspSetting) {
         Set<String> ids = new HashSet<>();
         List<String> errors = new ArrayList<>();
-        if(tspSetting.getPoints().size() > 100 || tspSetting.getPoints().size() == 0){
+        if(tspSetting.getPoints() == null || tspSetting.getPoints().size() > 100 || tspSetting.getPoints().size() == 0){
             errors.add("point number should be larger than 0 and less than 100");
             return errors;
         }
@@ -61,7 +61,7 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
         if(tspSolution.getDistance() <= 0){
             return ImmutableList.of("distance should be larger than 0");
         }
-        if(tspSolution.getTravelPoints().size() != tspSetting.getPoints().size()){
+        if(tspSolution.getTravelPoints() == null || tspSolution.getTravelPoints().size() != tspSetting.getPoints().size()){
             return ImmutableList.of("point number in solution does not match point number in the input");
         }
         Map<String, TspPoint> pointMap = new HashMap<>();
