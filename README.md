@@ -53,7 +53,7 @@ metrics of the result
 [6] checkSetting: method to verify the algorithm input, and return a list of errors. It will return
 an empty list or null value if no input error is found.
 
-[7] getSolutionClass: check the solution and return a list of errors. It will return
+[7] checkSolution: check the solution and return a list of errors. It will return
 an empty list or null value if not solution error if found.
 
 
