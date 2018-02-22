@@ -2,7 +2,7 @@ package io.npcloud.contracts.vrp.request;
 
 import java.util.List;
 
-public class VRPContractDetail {
+public class VRPSetting {
 
     private List<VRPObjective> objective;
 
