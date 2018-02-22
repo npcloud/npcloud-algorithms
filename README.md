@@ -64,6 +64,6 @@ and algorithm suppler should return the sum in DemoContractSolution format.
 
 ## TSPContract
 
-TSPContract asks for optimization result of Travel Salesman Problem. See
+TSPContract asks for optimization result of Travel Salesman Problem. See TspContract for details.
 
 
