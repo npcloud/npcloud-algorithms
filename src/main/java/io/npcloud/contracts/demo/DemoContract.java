@@ -7,6 +7,9 @@ import io.npcloud.contracts.IContract;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A demo optimization contract which simply ask for sum of two integers
+ */
 public class DemoContract implements
         IContract<DemoContractSetting, DemoContractSolution> {
 
@@ -29,8 +32,9 @@ public class DemoContract implements
     }
 
     public Map<String, Double> getObjectives(DemoContractSolution demoContractSolution) {
-        return ImmutableMap.of("sum", Double.valueOf(demoContractSolution.getSum()));
+        return ImmutableMap.of();
     }
+
 
     public List<String> checkSetting(DemoContractSetting setting) {
         if(setting.getRight() == null ||

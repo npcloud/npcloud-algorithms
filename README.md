@@ -36,21 +36,21 @@ public interface IContract<Setting, Solution> {
 }
 ```
 
-[1] getName: return the name of the algorithm, for example, "VRPContract" for VRP algorithm
+[1] **getName**: return the name of the algorithm, for example, "VRPContract" for VRP algorithm
 
-[2] getContractClass: return the class path for the implementation
+[2] **getContractClass**: return the class path for the implementation
 
-[3] getSettingClass: return the class path for algorithm input
+[3] **getSettingClass**: return the class path for algorithm input
 
-[4] getSolutionClass: return the class path for algorithm output
+[4] **getSolutionClass**: return the class path for algorithm output
 
-[5] getObjectives: return a summary view of algorithm output, for example the key performance
+[5] **getObjectives**: return a summary view of algorithm output, for example the key performance
 metrics of the result
 
-[6] checkSetting: method to verify the algorithm input, and return a list of errors. It will return
+[6] **checkSetting**: method to verify the algorithm input, and return a list of errors. It will return
 an empty list or null value if no input error is found.
 
-[7] checkSolution: check the solution and return a list of errors. It will return
+[7] **checkSolution: check the solution and return a list of errors. It will return
 an empty list or null value if not solution error if found.
 
 
@@ -59,8 +59,64 @@ an empty list or null value if not solution error if found.
 DemoContract is a very simple contract, it asks for sum of two integers (See DemoContractSetting),
 and algorithm suppler should return the sum in DemoContractSolution format.
 
+### Task setting
+
+Task setting contains two integer number
+
+```java
+public class DemoContractSetting {
+
+    private Integer left;
+
+    private Integer right;
+}
+```
+
+### Task solution
+
+Task solution should return the sum
+
+```java
+public class DemoContractSolution {
+    private Integer sum;
+}
+```
+
 ## TSPContract
 
 TSPContract asks for optimization result of Travel Salesman Problem. See TspContract for details.
 
+
+### Task setting
+
+Task input contains a list of points.
+And each point contains a point id, x coordinate value and y coordinate value.
+
+```java
+
+public class TspPoint {
+    private String id;
+    private Double x;
+    private Double y;
+}
+
+public class TspSetting {
+    private List<TspPoint> points;
+}
+```
+
+### Task solution
+
+Solution result contains a travel path passing all points and returning to the first point
+, and the total distance travelled.
+
+Travel path of all points. For example, if there are three point 1,2 and 3,
+ then valid travel points can be [1,2,3] or [2,3,1], etc.
+
+```java
+public class TspSolution {
+    private Double distance;
+    private List<String> travelPoints;
+ }
+```
 

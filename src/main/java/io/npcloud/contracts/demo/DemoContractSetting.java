@@ -1,5 +1,8 @@
 package io.npcloud.contracts.demo;
 
+/**
+ * task ask for sum of two integers
+ */
 public class DemoContractSetting {
 
     private Integer left;

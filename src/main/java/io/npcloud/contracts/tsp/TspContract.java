@@ -6,6 +6,9 @@ import io.npcloud.contracts.IContract;
 
 import java.util.*;
 
+/**
+ * Tsp contract ask for optimization result of TravelSalesman Problem
+ */
 public class TspContract implements IContract<TspSetting, TspSolution> {
     @Override
     public String getName() {
@@ -32,6 +35,11 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
         return ImmutableMap.of("distance", tspSolution.getDistance());
     }
 
+    /**
+     * verify optimization task
+     * @param tspSetting
+     * @return
+     */
     @Override
     public List<String> checkSetting(TspSetting tspSetting) {
         Set<String> ids = new HashSet<>();
@@ -56,6 +64,12 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
         return errors;
     }
 
+    /**
+     * optimization should match input
+     * @param tspSetting
+     * @param tspSolution
+     * @return
+     */
     @Override
     public List<String> checkSolution(TspSetting tspSetting, TspSolution tspSolution) {
         if(tspSolution.getDistance() <= 0){

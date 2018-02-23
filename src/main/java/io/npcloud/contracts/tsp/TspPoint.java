@@ -2,10 +2,11 @@ package io.npcloud.contracts.tsp;
 
 import java.util.List;
 
+/**
+ * each point contains a point id, x coordinate value and y coordinate value
+ */
 public class TspPoint {
-
     private String id;
-
     private Double x;
     private Double y;
 

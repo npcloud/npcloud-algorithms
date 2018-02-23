@@ -1,5 +1,8 @@
 package io.npcloud.contracts.demo;
 
+/**
+ * calculation result
+ */
 public class DemoContractSolution {
 
     private Integer sum;
