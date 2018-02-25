@@ -17,7 +17,7 @@ Any algorithm should implement following interface. Setting and Solution are two
 generic type for algorithm input and algorithm output.
 
 ```java
-public interface IContract<Setting, Solution> {
+public interface IContract<Setting, Solution, Objective> {
 
     String getName();
 
@@ -27,7 +27,7 @@ public interface IContract<Setting, Solution> {
 
     Class getSolutionClass();
 
-    Map<String, Double> getObjectives(Solution solution);
+    Objective getObjectives(Solution solution);
 
     List<String> checkSetting(Setting setting);
 
@@ -50,7 +50,7 @@ metrics of the result
 [6] **checkSetting**: method to verify the algorithm input, and return a list of errors. It will return
 an empty list or null value if no input error is found.
 
-[7] **checkSolution: check the solution and return a list of errors. It will return
+[7] **checkSolution**: check the solution and return a list of errors. It will return
 an empty list or null value if not solution error if found.
 
 
@@ -117,4 +117,8 @@ public class TspSolution {
     private List<String> travelPoints;
  }
 ```
+
+## VRPContract
+
+VRPContract is an Vehicle Routing optimization task contract. See [VRP](vrp.md) for detail information.
 
