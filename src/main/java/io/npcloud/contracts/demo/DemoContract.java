@@ -11,7 +11,7 @@ import java.util.Map;
  * A demo optimization contract which simply ask for sum of two integers
  */
 public class DemoContract implements
-        IContract<DemoContractSetting, DemoContractSolution> {
+        IContract<DemoContractSetting, DemoContractSolution, Integer> {
 
     public String getName() {
         return DemoContract.class.getName();
@@ -31,8 +31,8 @@ public class DemoContract implements
         return DemoContractSolution.class;
     }
 
-    public Map<String, Number> getObjectives(DemoContractSolution demoContractSolution) {
-        return ImmutableMap.of();
+    public Integer getObjectives(DemoContractSolution demoContractSolution) {
+        return demoContractSolution.getSum();
     }
 
 

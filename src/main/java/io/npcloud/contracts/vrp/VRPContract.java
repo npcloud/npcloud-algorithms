@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Vehicle Routing Problem Contract
  */
-public class VRPContract implements IContract<VRPSetting, VRPSolution> {
+public class VRPContract implements IContract<VRPSetting, VRPSolution, VRPObjective> {
 
     public String getName() {
         return "VRPSetting";
@@ -31,15 +31,15 @@ public class VRPContract implements IContract<VRPSetting, VRPSolution> {
         return VRPSolution.class;
     }
 
-    public Map<String, Number> getObjectives(VRPSolution vrpSolution) {
-        ImmutableMap.Builder builder =  ImmutableMap.builder().put("distance", vrpSolution.getDistance())
-                               .put("numberOfVehicles", vrpSolution.getNumberVehicles())
-                                .put("transportTime", vrpSolution.getTransportTime())
-                               .put( "completionTime", vrpSolution.getCompletionTime())
-                                .put("maxOperationTime", vrpSolution.getMaxOperationTime())
-                                .put("unassignedShipments", vrpSolution.getUnassigned().getShipments().size())
-                                .put("unassignedServices", vrpSolution.getUnassigned().getServices().size());
-        return builder.build();
+    public VRPObjective getObjectives(VRPSolution vrpSolution) {
+        VRPObjective objective = new VRPObjective();
+        objective.setDistance(vrpSolution.getDistance());
+        objective.setTransportTime(vrpSolution.getTransportTime());
+        objective.setCompletionTime(vrpSolution.getCompletionTime());
+        objective.setMaxOperationTime(vrpSolution.getMaxOperationTime());
+        objective.setUnassigned(vrpSolution.getUnassigned());
+
+        return objective;
     }
 
     public List<String> checkSetting(VRPSetting vrpContract) {

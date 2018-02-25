@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Tsp contract ask for optimization result of TravelSalesman Problem
  */
-public class TspContract implements IContract<TspSetting, TspSolution> {
+public class TspContract implements IContract<TspSetting, TspSolution, Double> {
     @Override
     public String getName() {
         return "TspContract";
@@ -31,8 +31,8 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
     }
 
     @Override
-    public Map<String, Number> getObjectives(TspSolution tspSolution) {
-        return ImmutableMap.of("distance", tspSolution.getDistance());
+    public Double getObjectives(TspSolution tspSolution) {
+        return tspSolution.getDistance();
     }
 
     /**

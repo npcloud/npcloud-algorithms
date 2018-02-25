@@ -8,7 +8,7 @@ import java.util.Map;
  * @param <Setting> class of task setting
  * @param <Solution> class of task solution
  */
-public interface IContract<Setting, Solution> {
+public interface IContract<Setting, Solution, Objective> {
 
     /**
      * algorithm name
@@ -39,7 +39,7 @@ public interface IContract<Setting, Solution> {
      * @param solution
      * @return
      */
-    Map<String, Number> getObjectives(Solution solution);
+    Objective getObjectives(Solution solution);
 
     /**
      * verify task settings
