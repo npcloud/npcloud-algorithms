@@ -2,8 +2,14 @@ package io.npcloud.contracts.vrp.request;
 
 import java.util.List;
 
+/**
+ * Vehicle Routing Task input
+ */
 public class VRPSetting {
 
+    /**
+     * specify the objectives of your optimization
+     */
     private List<VRPObjective> objective;
 
     private List<VRPCostMatrix> costMatrices;

@@ -2,25 +2,34 @@ package io.npcloud.contracts.vrp.request;
 
 import java.util.List;
 
+/**
+ * additional relations ou can use to establish a
+ * relationship between services and shipments:
+ */
 public class VRPRelation {
 
-    public enum VRPRelationType{
-        IN_SAME_ROUTE,
-        IN_SEQUENCE,
-        IN_DIRECT_SEQUENCE;
-    }
+    /**
+     * type of relation
+     * Currently only IN_SAME_ROUTE relation is supported
+     *
+     */
+    private VRPRelation type;
 
-    private String type;
-
+    /**
+     * service/shipments ids
+     */
     private List<String> ids;
 
+    /**
+     * vehicle pre-assigned for services, optional
+     */
     private String vehicleId;
 
-    public String getType() {
+    public VRPRelation getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(VRPRelation type) {
         this.type = type;
     }
 

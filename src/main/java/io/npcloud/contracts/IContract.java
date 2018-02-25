@@ -39,7 +39,7 @@ public interface IContract<Setting, Solution> {
      * @param solution
      * @return
      */
-    Map<String, Double> getObjectives(Solution solution);
+    Map<String, Number> getObjectives(Solution solution);
 
     /**
      * verify task settings

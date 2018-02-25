@@ -1,16 +1,36 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.common.VRPAddress;
+
 public class VRPDelivery {
-    private String address;
-    private Long duration;
+    /**
+     * service address
+     */
+    private VRPAddress address;
+
+    /**
+     * how long will the vehicle stay at location
+     */
+    private Long duration = 0L;
+
+    /**
+     * List of time window.
+     * Unix timestamp are used in VRPTimeWindow
+     */
     private VRPTimeWindow timeWindow;
+
+    /**
+     * Specifies the preparation time in seconds. It can be used to model
+     * parking lot search time since if you have 3 identical locations in a row,
+     *it only falls due once.
+     */
     private Long preparationTime;
 
-    public String getAddress() {
+    public VRPAddress getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(VRPAddress address) {
         this.address = address;
     }
 

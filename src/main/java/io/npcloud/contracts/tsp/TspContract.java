@@ -31,7 +31,7 @@ public class TspContract implements IContract<TspSetting, TspSolution> {
     }
 
     @Override
-    public Map<String, Double> getObjectives(TspSolution tspSolution) {
+    public Map<String, Number> getObjectives(TspSolution tspSolution) {
         return ImmutableMap.of("distance", tspSolution.getDistance());
     }
 

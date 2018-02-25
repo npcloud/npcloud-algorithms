@@ -1,38 +1,47 @@
 package io.npcloud.contracts.vrp.response;
 
+import io.npcloud.contracts.vrp.common.VRPActivityWorkType;
 import io.npcloud.contracts.vrp.common.VRPAddress;
 
 import java.util.List;
 
+/**
+ * Describe vehicle's activity at one stop
+ */
 public class VRPActivity {
 
-    private String type;
+    //Specifies the type of activity.
+    // See VRPActivityWorkType
+    private VRPActivityWorkType type;
 
+    //id to the service or the shipment,
     private String id;
 
+    //address id of either the address of service or te address
+    //of hte shipment pickup or deliver
     private String locationId;
 
+    //address detail
     private VRPAddress address;
 
+    //arrival time to location
     private Long arrTime;
 
+    //end time at location
     private Long endTime;
 
+    //waiting time at location, in seconds
     private Long waitingTime;
 
+    //cumulated distance
     private Long distance;
 
+    //capacity before activity
     private List<Integer> loadBefore;
 
+    //capacity after activity
     private List<Integer> loadAfter;
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getId() {
         return id;
@@ -104,5 +113,9 @@ public class VRPActivity {
 
     public void setLoadAfter(List<Integer> loadAfter) {
         this.loadAfter = loadAfter;
+    }
+
+    public void setType(VRPActivityWorkType type) {
+        this.type = type;
     }
 }

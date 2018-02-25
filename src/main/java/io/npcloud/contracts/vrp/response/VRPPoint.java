@@ -2,7 +2,11 @@ package io.npcloud.contracts.vrp.response;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class VRPPoint {
+
     private List<Double> coordinates;
 
     private String type;

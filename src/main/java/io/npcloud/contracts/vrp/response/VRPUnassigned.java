@@ -3,14 +3,22 @@ package io.npcloud.contracts.vrp.response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * unassigned services or shipments
+ */
 public class VRPUnassigned {
 
+    //list of unsigned service
     private List<String> services;
 
+    //list of unsigned shipments
     private List<String> shipments;
 
+    //list of unsigned breaks to corresponding route
     private List<String> breaks;
 
+    //some detail reason why service or shipments end up being
+    //unassigned
     private List<VRPUnassigned> details;
 
     public List<String> getServices() {

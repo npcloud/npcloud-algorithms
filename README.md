@@ -108,9 +108,7 @@ public class TspSetting {
 ### Task solution
 
 Solution result contains a travel path passing all points and returning to the first point
-, and the total distance travelled.
-
-Travel path of all points. For example, if there are three point 1,2 and 3,
+, and the total distance travelled.  For example, if there are three point 1,2 and 3,
  then valid travel points can be [1,2,3] or [2,3,1], etc.
 
 ```java

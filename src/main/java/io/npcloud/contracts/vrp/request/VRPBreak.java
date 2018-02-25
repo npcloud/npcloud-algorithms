@@ -2,13 +2,40 @@ package io.npcloud.contracts.vrp.request;
 
 import java.util.List;
 
+/**
+ * Vehicle operation break
+ */
 public class VRPBreak {
+
+    /**
+     * earliest start time of the break
+     */
     private Long earliest;
-    private Long lastest;
+
+    /**
+     * latest start time of the break
+     */
+    private Long latest;
+
+    /**
+     * duration of the break in second
+     */
     private Long duration;
+
+    /**
+     * max driving time without break in second
+     */
     private Long maxDrivingTime;
+
+    /**
+     * specify how a break duration can be split into smaller breaks
+     */
     private List<Integer> possibleSplit;
-    private Long initalDrivingTime;
+
+    /**
+     * specify the initial driving time of the vehicle
+     */
+    private Long initialDrivingTime;
 
     public Long getEarliest() {
         return earliest;
@@ -18,12 +45,12 @@ public class VRPBreak {
         this.earliest = earliest;
     }
 
-    public Long getLastest() {
-        return lastest;
+    public Long getLatest() {
+        return latest;
     }
 
-    public void setLastest(Long lastest) {
-        this.lastest = lastest;
+    public void setLatest(Long latest) {
+        this.latest = latest;
     }
 
     public Long getDuration() {
@@ -50,11 +77,11 @@ public class VRPBreak {
         this.possibleSplit = possibleSplit;
     }
 
-    public Long getInitalDrivingTime() {
-        return initalDrivingTime;
+    public Long getInitialDrivingTime() {
+        return initialDrivingTime;
     }
 
-    public void setInitalDrivingTime(Long initalDrivingTime) {
-        this.initalDrivingTime = initalDrivingTime;
+    public void setInitialDrivingTime(Long initialDrivingTime) {
+        this.initialDrivingTime = initialDrivingTime;
     }
 }

@@ -2,6 +2,9 @@ package io.npcloud.contracts.vrp.response;
 
 import java.util.List;
 
+/**
+ * VRP task's solution
+ */
 public class VRPSolution {
     //over all distance travelled in meters
     private Long distance;
@@ -21,9 +24,11 @@ public class VRPSolution {
     //number of employed vechicles
     private int numberVehicles;
 
+    //list of routes
     private List<VRPRoute> routeList;
 
-    private VRPUnassignedDetail unassigned;
+    //unassigned services and shipments
+    private VRPUnassigned unassigned;
 
     public Long getDistance() {
         return distance;
@@ -81,11 +86,11 @@ public class VRPSolution {
         this.routeList = routeList;
     }
 
-    public VRPUnassignedDetail getUnassigned() {
+    public VRPUnassigned getUnassigned() {
         return unassigned;
     }
 
-    public void setUnassigned(VRPUnassignedDetail unassigned) {
+    public void setUnassigned(VRPUnassigned unassigned) {
         this.unassigned = unassigned;
     }
 }

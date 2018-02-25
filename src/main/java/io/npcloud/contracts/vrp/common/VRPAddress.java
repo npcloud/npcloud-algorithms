@@ -1,5 +1,8 @@
 package io.npcloud.contracts.vrp.common;
 
+/**
+ * Address definition
+ */
 public class VRPAddress {
     private String locationId;
     private String name;

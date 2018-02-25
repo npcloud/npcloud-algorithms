@@ -2,9 +2,12 @@ package io.npcloud.contracts.vrp.response;
 
 import java.util.List;
 
+/**
+ * Route object describe the path of a vehicle
+ */
 public class VRPRoute {
     //id of vechicle operating the route
-    private String vechicleId;
+    private String vehicleId;
 
     //travel distance of the route
     private Long distance;
@@ -18,18 +21,15 @@ public class VRPRoute {
     //overall waiting time
     private Long waitingTime;
 
-    //each leg in vehicle route
-    private List<VRPPoint> points;
-
     //activities
     private List<VRPActivity> activities;
 
-    public String getVechicleId() {
-        return vechicleId;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setVechicleId(String vechicleId) {
-        this.vechicleId = vechicleId;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public Long getDistance() {
@@ -64,13 +64,6 @@ public class VRPRoute {
         this.waitingTime = waitingTime;
     }
 
-    public List<VRPPoint> getPoints() {
-        return points;
-    }
-
-    public void setPoints(List<VRPPoint> points) {
-        this.points = points;
-    }
 
     public List<VRPActivity> getActivities() {
         return activities;

@@ -2,16 +2,62 @@ package io.npcloud.contracts.vrp.request;
 
 import java.util.List;
 
+/**
+ * shipment involved two locations: pickup location and delivery location
+ */
 public class VRPShipments {
+    /**
+     * shipment id
+     */
     private String id;
+
+    /**
+     * shipment name
+     */
     private String name;
+
+    /**
+     * pickup info
+     */
     private VRPPickup pickup;
+
+    /**
+     * delivery info
+     */
     private VRPDelivery delivery;
+
+    /**
+     *For example, if the item that needs to be delivered has two size dimension, volume and weight,
+     * it as follow [ 20, 5 ] assuming a volume of 20 and a weight of 5.
+     * */
     private List<Integer> size;
+
+    /**
+     * skill required for this service
+     */
     private List<String> requiredSkills;
-    private List<String> allowedVehicles;
+
+    /**
+     * Specified valid vehicle id for this service.
+     * Empty list means all vehicles are available for this service.
+     * If both requiredVehicles and disallowedVehicles are not empty,
+     * then requiredVehicles are effective.
+     */
+    private List<String> requiredVehicles;
+
+    /**
+     * If requiredVehicles is empty, then disallowedVehicles is used to exclude
+     * the usage of certain vehicles. Empty list means no vehicles is excluded.
+     */
     private List<String> disallowedVehicles;
-    private Integer priority;
+
+    /**
+     * Specifies the priority. Can be 1 = high priority to 10 = low priority.
+     * Often there are more services/shipments than the available vehicle fleet can handle.
+     * Then you could assign priorities to differentiate high priority tasks from those that
+     * can be served later or omitted at all.
+     */
+    private Integer priority = 1;
 
     public String getId() {
         return id;
@@ -61,12 +107,12 @@ public class VRPShipments {
         this.requiredSkills = requiredSkills;
     }
 
-    public List<String> getAllowedVehicles() {
-        return allowedVehicles;
+    public List<String> getRequiredVehicles() {
+        return requiredVehicles;
     }
 
-    public void setAllowedVehicles(List<String> allowedVehicles) {
-        this.allowedVehicles = allowedVehicles;
+    public void setRequiredVehicles(List<String> requiredVehicles) {
+        this.requiredVehicles = requiredVehicles;
     }
 
     public List<String> getDisallowedVehicles() {

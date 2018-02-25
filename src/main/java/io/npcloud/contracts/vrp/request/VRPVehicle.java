@@ -4,6 +4,9 @@ import io.npcloud.contracts.vrp.common.VRPAddress;
 
 import java.util.List;
 
+/**
+ * vehicle instance
+ */
 public class VRPVehicle {
     private String vehicleId;
     private String typeId;

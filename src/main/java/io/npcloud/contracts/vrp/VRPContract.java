@@ -1,5 +1,6 @@
 package io.npcloud.contracts.vrp;
 
+import com.google.common.collect.ImmutableMap;
 import io.npcloud.contracts.IContract;
 import io.npcloud.contracts.vrp.request.VRPSetting;
 import io.npcloud.contracts.vrp.response.VRPSolution;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * vrp contract solution checker provider
+ * Vehicle Routing Problem Contract
  */
 public class VRPContract implements IContract<VRPSetting, VRPSolution> {
 
@@ -30,8 +31,15 @@ public class VRPContract implements IContract<VRPSetting, VRPSolution> {
         return VRPSolution.class;
     }
 
-    public Map<String, Double> getObjectives(VRPSolution vrpSolution) {
-        return null;
+    public Map<String, Number> getObjectives(VRPSolution vrpSolution) {
+        ImmutableMap.Builder builder =  ImmutableMap.builder().put("distance", vrpSolution.getDistance())
+                               .put("numberOfVehicles", vrpSolution.getNumberVehicles())
+                                .put("transportTime", vrpSolution.getTransportTime())
+                               .put( "completionTime", vrpSolution.getCompletionTime())
+                                .put("maxOperationTime", vrpSolution.getMaxOperationTime())
+                                .put("unassignedShipments", vrpSolution.getUnassigned().getShipments().size())
+                                .put("unassignedServices", vrpSolution.getUnassigned().getServices().size());
+        return builder.build();
     }
 
     public List<String> checkSetting(VRPSetting vrpContract) {

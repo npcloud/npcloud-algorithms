@@ -31,7 +31,7 @@ public class DemoContract implements
         return DemoContractSolution.class;
     }
 
-    public Map<String, Double> getObjectives(DemoContractSolution demoContractSolution) {
+    public Map<String, Number> getObjectives(DemoContractSolution demoContractSolution) {
         return ImmutableMap.of();
     }
 

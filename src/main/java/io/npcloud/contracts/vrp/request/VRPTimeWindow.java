@@ -1,7 +1,17 @@
 package io.npcloud.contracts.vrp.request;
 
+/**
+ * Time window object
+ */
 public class VRPTimeWindow {
+    /**
+     * unix timestamp for window start
+     */
     private Long earliest;
+
+    /**
+     * unix timestamp for window end
+     */
     private Long latest;
 
     public Long getEarliest() {

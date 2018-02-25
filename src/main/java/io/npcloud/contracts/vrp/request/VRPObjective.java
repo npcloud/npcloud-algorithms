@@ -1,13 +1,16 @@
 package io.npcloud.contracts.vrp.request;
 
+/**
+ * currently we support two object type: min, max
+ */
 public class VRPObjective {
 
     public enum VRPObjectiveType{
-        min, max, minmax
+        min, minmax
     }
 
     public enum VRPObjectClass{
-        transportTime, completionTime
+        vehicles, transportTime, completionTime
     }
 
     private String type = "min";
