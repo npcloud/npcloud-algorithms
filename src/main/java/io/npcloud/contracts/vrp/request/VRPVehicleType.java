@@ -1,18 +1,25 @@
 package io.npcloud.contracts.vrp.request;
 
 import com.google.common.collect.ImmutableList;
+import io.npcloud.contracts.vrp.IVerify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * vehicle type definition
  */
-public class VRPVehicleType {
+public class VRPVehicleType implements IVerify {
 
     /**
      * type id
      */
     private String typeId;
+
+    /**
+     * vehicle profile
+     */
+    private String profile;
 
     /**
      * capacity of the vehicle
@@ -66,5 +73,24 @@ public class VRPVehicleType {
 
     public void setServiceTimeFactor(Double serviceTimeFactor) {
         this.serviceTimeFactor = serviceTimeFactor;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notEmpty(prefix + ".typeId", this.typeId, errors);
+        notEmpty(prefix + ".profile", this.profile, errors);
+        notEmpty(prefix + ".capacity", this.capacity, errors);
+        validNonNegative(prefix + ".speedFactor", this.speedFactor, errors);
+        validNonNegative(prefix + ".serviceTimeFactor", this.serviceTimeFactor, errors);
+        return errors;
     }
 }

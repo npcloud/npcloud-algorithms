@@ -1,15 +1,15 @@
 package io.npcloud.contracts.vrp.request;
 
 import com.google.common.collect.ImmutableList;
+import io.npcloud.contracts.vrp.IVerify;
 import io.npcloud.contracts.vrp.common.VRPAddress;
-import io.npcloud.contracts.vrp.common.VRPWorkType;
 
 import java.util.List;
 
 /**
  * Service involved only one location
  */
-public class VRPService {
+public class VRPService implements IVerify{
     /**
      * service id
      */
@@ -21,7 +21,7 @@ public class VRPService {
      * pickup: items are loaded after the service for rest of the travel
      * delivery: existing items are unloaded after service
      */
-    private VRPWorkType workType = VRPWorkType.pickup;
+    private String workType = "pickup";
 
     /**
      * name of the service
@@ -98,11 +98,11 @@ public class VRPService {
         this.id = id;
     }
 
-    public VRPWorkType getWorkType() {
+    public String getWorkType() {
         return workType;
     }
 
-    public void setWorkType(VRPWorkType workType) {
+    public void setWorkType(String workType) {
         this.workType = workType;
     }
 
@@ -192,5 +192,10 @@ public class VRPService {
 
     public void setMaxTimeInVehicle(Long maxTimeInVehicle) {
         this.maxTimeInVehicle = maxTimeInVehicle;
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        return null;
     }
 }

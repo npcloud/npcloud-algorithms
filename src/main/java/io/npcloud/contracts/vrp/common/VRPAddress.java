@@ -1,9 +1,15 @@
 package io.npcloud.contracts.vrp.common;
 
+import io.npcloud.contracts.vrp.IVerify;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Address definition
  */
-public class VRPAddress {
+public class VRPAddress implements IVerify {
+
     private String locationId;
     private String name;
     private Double lon;
@@ -39,5 +45,15 @@ public class VRPAddress {
 
     public void setLat(Double lat) {
         this.lat = lat;
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notEmpty(prefix + ".locationId", locationId, errors);
+        notEmpty(prefix + ".name", name, errors);
+        validNonNegative(prefix + ".lon", lon, errors);
+        validNonNegative(prefix + ".lat", lat, errors);
+        return errors;
     }
 }

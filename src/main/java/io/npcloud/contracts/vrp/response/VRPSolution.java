@@ -1,11 +1,46 @@
 package io.npcloud.contracts.vrp.response;
 
+import io.npcloud.contracts.vrp.IVerify;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * VRP task's solution
  */
-public class VRPSolution {
+public class VRPSolution implements IVerify{
+
+    @Override
+    public List<String> verify(String prefix) {
+        //check individual fields
+        List<String> errors = new ArrayList<>();
+        validNonNegative(prefix + ".distance", distance, errors);
+        validNonNegative(prefix + ".transportTime", transportTime, errors);
+        validNonNegative(prefix + ".completionTime", completionTime, errors);
+        validNonNegative(prefix + ".maxOperationTime", maxOperationTime, errors);
+        validNonNegative(prefix + ".waitingTime", waitingTime, errors);
+        validNonNegative(prefix + ".waitingTime", numberVehicles, errors);
+
+        if(routeList != null){
+            int i = 0;
+            for(VRPRoute route: routeList) {
+                errors.addAll(route.verify(prefix + ",route[" + i + "]"));
+                i++;
+            }
+        }
+
+        if(unassigned == null){
+            unassigned = new VRPUnassigned();
+        }else{
+            errors.addAll(unassigned.verify(prefix + ".unassigned"));
+        }
+        //cross-check: locationId
+        //cross-check: vehicle
+        //cross-check: unassigned
+        //check objectives: run in vrp simulation engine
+        return null;
+    }
+
     //over all distance travelled in meters
     private Long distance;
 
@@ -22,7 +57,7 @@ public class VRPSolution {
     private Long waitingTime;
 
     //number of employed vechicles
-    private int numberVehicles;
+    private Integer numberVehicles;
 
     //list of routes
     private List<VRPRoute> routeList;
@@ -93,4 +128,6 @@ public class VRPSolution {
     public void setUnassigned(VRPUnassigned unassigned) {
         this.unassigned = unassigned;
     }
+
+
 }

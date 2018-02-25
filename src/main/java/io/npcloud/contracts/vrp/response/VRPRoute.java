@@ -1,11 +1,33 @@
 package io.npcloud.contracts.vrp.response;
 
+import io.npcloud.contracts.vrp.IVerify;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Route object describe the path of a vehicle
  */
-public class VRPRoute {
+public class VRPRoute implements IVerify {
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notEmpty(prefix + ".vehicleId", vehicleId , errors);
+        validNonNegative(prefix + ".distance", distance , errors);
+        validNonNegative(prefix + ".transportTime", transportTime , errors);
+        validNonNegative(prefix + ".completionTime", completionTime , errors);
+        validNonNegative(prefix + ".waitingTime", waitingTime , errors);
+        notEmpty(prefix + ".activities", activities , errors);
+        if(activities != null){
+            for(VRPActivity activity: activities){
+                errors.addAll(activity.verify(prefix + "activity(id=" + activity.getId() + ")"));
+            }
+        }
+        return errors;
+    }
+
+
     //id of vechicle operating the route
     private String vehicleId;
 
@@ -72,4 +94,5 @@ public class VRPRoute {
     public void setActivities(List<VRPActivity> activities) {
         this.activities = activities;
     }
+
 }

@@ -1,8 +1,31 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.IVerify;
 import io.npcloud.contracts.vrp.common.VRPAddress;
 
-public class VRPPickup {
+import java.util.ArrayList;
+import java.util.List;
+
+public class VRPPickup implements IVerify {
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notNull(prefix + ".address", address, errors);
+        notNull(prefix + ".timeWindow", timeWindow, errors);
+        validNonNegative(prefix + ".duration", duration, errors);
+        validNonNegative(prefix + ".preparationTime", preparationTime, errors);
+        if(address != null){
+            //check address
+            errors.addAll(address.verify(prefix + ".address"));
+        }
+        if(timeWindow != null){
+            //check time window
+            errors.addAll(timeWindow.verify(prefix + ".timeWindow"));
+        }
+        return errors;
+    }
+
     /**
      * service address
      */

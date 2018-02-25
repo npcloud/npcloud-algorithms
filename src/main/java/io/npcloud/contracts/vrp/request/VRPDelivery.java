@@ -1,8 +1,12 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.IVerify;
 import io.npcloud.contracts.vrp.common.VRPAddress;
 
-public class VRPDelivery {
+import java.util.ArrayList;
+import java.util.List;
+
+public class VRPDelivery implements IVerify {
     /**
      * service address
      */
@@ -24,7 +28,7 @@ public class VRPDelivery {
      * parking lot search time since if you have 3 identical locations in a row,
      *it only falls due once.
      */
-    private Long preparationTime;
+    private Long preparationTime = 0L;
 
     public VRPAddress getAddress() {
         return address;
@@ -58,4 +62,21 @@ public class VRPDelivery {
         this.preparationTime = preparationTime;
     }
 
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notNull(prefix + ".address", address, errors);
+        notNull(prefix + ".timeWindow", timeWindow, errors);
+        validNonNegative(prefix + ".duration", duration, errors);
+        validNonNegative(prefix + ".preparationTime", preparationTime, errors);
+        if(address != null){
+            //check address
+            errors.addAll(address.verify(prefix + ".address"));
+        }
+        if(timeWindow != null){
+            //check time window
+            errors.addAll(timeWindow.verify(prefix + ".timeWindow"));
+        }
+        return errors;
+    }
 }

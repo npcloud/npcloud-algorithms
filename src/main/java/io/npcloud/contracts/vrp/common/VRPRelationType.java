@@ -1,6 +1,6 @@
 package io.npcloud.contracts.vrp.common;
 
-public enum VRPRelation{
+public enum VRPRelationType {
     /**
      * some service/shipment should be assigned in same route
      */

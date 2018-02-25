@@ -1,12 +1,14 @@
 package io.npcloud.contracts.vrp.response;
 
+import io.npcloud.contracts.vrp.IVerify;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * unassigned services or shipments
  */
-public class VRPUnassigned {
+public class VRPUnassigned implements IVerify {
 
     //list of unsigned service
     private List<String> services;
@@ -17,9 +19,6 @@ public class VRPUnassigned {
     //list of unsigned breaks to corresponding route
     private List<String> breaks;
 
-    //some detail reason why service or shipments end up being
-    //unassigned
-    private List<VRPUnassigned> details;
 
     public List<String> getServices() {
         return services;
@@ -45,18 +44,15 @@ public class VRPUnassigned {
         this.breaks = breaks;
     }
 
-    public List<VRPUnassigned> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<VRPUnassigned> details) {
-        this.details = details;
-    }
-
     public VRPUnassigned() {
         this.services = new ArrayList<>();
         this.shipments = new ArrayList<>();
         this.breaks = new ArrayList<>();
-        this.details = new ArrayList<>();
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        return errors;
     }
 }

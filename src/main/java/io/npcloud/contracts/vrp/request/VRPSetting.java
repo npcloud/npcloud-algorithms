@@ -1,11 +1,31 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.IVerify;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Vehicle Routing Task input
  */
-public class VRPSetting {
+public class VRPSetting implements IVerify{
+
+    @Override
+    public List<String> verify(String prefix) {
+        //check individual fields
+        List<String> errors = new ArrayList<>();
+        notNull(prefix + "objective", objective, errors);
+        notNull(prefix + "costMatrices", costMatrices, errors);
+        notNull(prefix + "vehicles", vehicles, errors);
+        notNull(prefix + "vehicleTypes", vehicleTypes, errors);
+        notNull(prefix + "services", services, errors);
+        notNull(prefix + "shipments", shipments, errors);
+        notNull(prefix + "relations", relations, errors);
+        //cross-check: service id match
+        //cross-check: vehicle id match
+        return null;
+    }
+
 
     /**
      * specify the objectives of your optimization
@@ -79,4 +99,5 @@ public class VRPSetting {
     public void setRelations(List<VRPRelation> relations) {
         this.relations = relations;
     }
+
 }

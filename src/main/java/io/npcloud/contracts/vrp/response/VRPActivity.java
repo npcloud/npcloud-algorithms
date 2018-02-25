@@ -1,18 +1,40 @@
 package io.npcloud.contracts.vrp.response;
 
-import io.npcloud.contracts.vrp.common.VRPActivityWorkType;
+import io.npcloud.contracts.vrp.IVerify;
 import io.npcloud.contracts.vrp.common.VRPAddress;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Describe vehicle's activity at one stop
  */
-public class VRPActivity {
+public class VRPActivity implements IVerify {
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notEmpty(prefix + ".type", type, errors);
+        notEmpty(prefix + ".id", id, errors);
+        notEmpty(prefix + ".locationId", locationId, errors);
+        notNull(prefix + ".address", address, errors);
+        validNonNegative(prefix + ".arrTime", arrTime, errors);
+        validNonNegative(prefix + ".endTime", endTime, errors);
+        validNonNegative(prefix + ".waitingTime", waitingTime, errors);
+        validNonNegative(prefix + ".distance", distance, errors);
+        notNull(prefix + ".loadBefore", loadBefore, errors);
+        notNull(prefix + ".loadAfter", loadAfter, errors);
+
+        if(address != null){
+            errors.addAll(address.verify(prefix + ".address"));
+        }
+
+        return errors;
+    }
 
     //Specifies the type of activity.
     // See VRPActivityWorkType
-    private VRPActivityWorkType type;
+    private String type;
 
     //id to the service or the shipment,
     private String id;
@@ -33,7 +55,7 @@ public class VRPActivity {
     //waiting time at location, in seconds
     private Long waitingTime;
 
-    //cumulated distance
+    //accumulated distance
     private Long distance;
 
     //capacity before activity
@@ -115,7 +137,13 @@ public class VRPActivity {
         this.loadAfter = loadAfter;
     }
 
-    public void setType(VRPActivityWorkType type) {
+    public void setType(String type) {
         this.type = type;
     }
+
+    public String getType() {
+        return type;
+    }
+
+
 }

@@ -1,11 +1,13 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.IVerify;
+
 import java.util.List;
 
 /**
  * shipment involved two locations: pickup location and delivery location
  */
-public class VRPShipments {
+public class VRPShipments implements IVerify {
     /**
      * shipment id
      */
@@ -129,5 +131,10 @@ public class VRPShipments {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        return null;
     }
 }

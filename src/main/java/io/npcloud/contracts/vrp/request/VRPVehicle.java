@@ -1,23 +1,63 @@
 package io.npcloud.contracts.vrp.request;
 
+import io.npcloud.contracts.vrp.IVerify;
 import io.npcloud.contracts.vrp.common.VRPAddress;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * vehicle instance
  */
-public class VRPVehicle {
+public class VRPVehicle implements IVerify{
+    /**
+     * vehicle id
+     */
     private String vehicleId;
+
+    /**
+     * vehicle type id
+     */
     private String typeId;
+
+    /**
+     * start address
+     */
     private VRPAddress startAddress;
+
+    /**
+     * end address
+     */
     private VRPAddress endAddress;
+
+    /**
+     * if the vehicle need to return to the start position
+     */
     private Integer returnToDepot = 1;
+
+    /**
+     * earliest working time
+     */
     private Long earliestStart = 0L;
+
+    /**
+     * latest working time
+     */
     private Long latestEnd = Long.MAX_VALUE;
-    private List<String> skills;
-    private VRPBreak vrpBreak;
+
+    /**
+     * skills of this vehicle
+     */
+    private List<String> skills = new ArrayList<>();
+
+    /**
+     * max travel distance of this vehicle
+     */
     private Long maxDistance = Long.MAX_VALUE;
+
+    /**
+     * max driving time for this vehicle
+     */
     private Long maxDrivingTime = Long.MAX_VALUE;
 
     public String getVehicleId() {
@@ -84,14 +124,6 @@ public class VRPVehicle {
         this.skills = skills;
     }
 
-    public VRPBreak getVrpBreak() {
-        return vrpBreak;
-    }
-
-    public void setVrpBreak(VRPBreak vrpBreak) {
-        this.vrpBreak = vrpBreak;
-    }
-
     public Long getMaxDistance() {
         return maxDistance;
     }
@@ -106,5 +138,45 @@ public class VRPVehicle {
 
     public void setMaxDrivingTime(Long maxDrivingTime) {
         this.maxDrivingTime = maxDrivingTime;
+    }
+
+    @Override
+    public List<String> verify(String prefix) {
+        List<String> errors = new ArrayList<>();
+        notEmpty(prefix + ".vehileId", vehicleId, errors);
+        notEmpty(prefix + ".typeId", typeId, errors);
+        notNull(prefix + ".startAddress", startAddress, errors);
+        notNull(prefix + ".endAddress", endAddress, errors);
+        if(returnToDepot == null || returnToDepot != 1){
+            returnToDepot = 0;
+        }
+        if(earliestStart == null){
+            earliestStart = 0L;
+        }
+        validNonNegative(prefix + ".earliestStart", earliestStart, errors);
+
+        if(latestEnd == null){
+            latestEnd = Long.MAX_VALUE;
+        }
+        validNonNegative(prefix + ".latestEnd", latestEnd, errors);
+
+        if(maxDistance == null){
+            maxDistance = Long.MAX_VALUE;
+        }
+        validNonNegative(prefix + ".maxDistance", maxDistance, errors);
+
+        if(maxDrivingTime == null){
+            maxDrivingTime = Long.MAX_VALUE;
+        }
+        validNonNegative(prefix + ".maxDrivingTime", maxDrivingTime, errors);
+
+        if(startAddress != null){
+            errors.addAll(startAddress.verify(prefix + ".startAddress"));
+        }
+
+        if(endAddress != null){
+            errors.addAll(endAddress.verify(prefix + ".endAddress"));
+        }
+        return errors;
     }
 }
